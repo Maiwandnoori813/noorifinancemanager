@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Noori Finance — Investment Simulator</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body data-theme="dark" data-lang="en">
+  <header class="topbar">
+    <div class="brand">Noori Finance</div>
+    <div class="controls">
+      <select id="themeSelect" title="Theme">
+        <option value="dark">Dark Futuristic</option>
+        <option value="glass">Glass Minimal</option>
+        <option value="light">White & Teal</option>
+      </select>
+      <select id="langSelect" title="Language">
+        <option value="en">English</option>
+        <option value="ps">پښتو</option>
+      </select>
+      <button id="exportBtn" class="btn small">Export CSV</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="panel left">
+      <h2 id="title">Simulator</h2>
+      <label id="lblInitial">Initial total (AFN)</label>
+      <input id="initialTotal" type="number" value="600000" />
+
+      <label id="lblSpend">Monthly personal spending (AFN)</label>
+      <input id="monthlySpend" type="number" value="10000" />
+
+      <label id="lblRate">Monthly profit rate (%)</label>
+      <input id="profitRate" type="number" value="17" step="0.01" />
+
+      <label id="lblMonths">Months</label>
+      <div class="row">
+        <input id="months" type="number" value="12" style="width:120px" />
+        <button id="simulate" class="btn">Simulate</button>
+        <button id="sim18" class="btn ghost">18</button>
+        <button id="sim24" class="btn ghost">24</button>
+      </div>
+
+      <div class="summary">
+        <div><div class="muted" id="lblCurrent">Current Investment</div><div id="currentInvestment">— AFN</div></div>
+        <div><div class="muted" id="lblProfit">Projected Monthly Profit</div><div id="currentProfit">— AFN</div></div>
+        <div><div class="muted" id="lblReinvest">Reinvest (last month)</div><div id="reinvestAmount">— AFN</div></div>
+      </div>
+
+      <div style="margin-top:12px">
+        <label id="lblManual">Manual transaction (add/take)</label>
+        <div class="row">
+          <input id="txMonth" type="number" placeholder="Month #" />
+          <input id="txAmount" type="number" placeholder="Amount AFN" />
+          <button id="addTx" class="btn small">Apply</button>
+        </div>
+      </div>
+
+      <div id="timelineList" class="timeline"></div>
+    </section>
+
+    <section class="panel right">
+      <div class="chartTop">
+        <h3 id="chartTitle">Investment Growth</h3>
+        <div class="muted" id="chartSub">Smooth line charts</div>
+      </div>
+      <canvas id="lineChart" height="220"></canvas>
+      <div class="muted small" style="margin-top:8px" id="aiSummary"></div>
+    </section>
+  </main>
+
+<script src="app.js"></script>
+</body>
+</html>
